@@ -74,17 +74,17 @@ The project is a simple challenge to test your skills in building APIs using the
 
 ### Evaluation
 
-- [ ] Architecture
-- [ ] Automated tests
-- [ ] Functionalities of the APIs
+- [x] Architecture
+- [x] Automated tests
+- [x] Functionalities of the APIs
 - [ ] Programming good practices
-- [ ] Project organization
+- [x] Project organization
 - [ ] Structure componentization
-- [ ] Clean code with camelcase pattern
+- [x] Clean code with camelcase pattern
 
 ### Bonus Level Up
 
-- [ ] Authenticated the routes using JWT
+- [x] Authenticated the routes using JWT
 - [ ] Process and validate the data that the API receives before creating the post.
 - [x] Using MongoDB for storage data
 - [ ] Using Swagger API documentation
