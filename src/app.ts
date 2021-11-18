@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import database from './infra/database/mongooseConnection';
 import { routes } from './routes';
+import Swagger from './infra/swagger';
 
 class App {
 	server: Express;
@@ -16,6 +17,7 @@ class App {
 
 	loadMiddleware() {
 		this.server.use(express.json());
+		this.server.use('/api-docs', Swagger.serve, Swagger.setup);
 	}
 
 	loadRoutes() {
