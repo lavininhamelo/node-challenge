@@ -31,12 +31,12 @@ The project is a simple challenge to test your skills in building APIs using the
 
 ### Requirements
 
-- [ ] All API responses must be in JSON format.
-- [ ] Add pagination on the API for the listing of the posts
-- [ ] Provide the unit testing for all routes using Mocha and Chai or your preferred testing framework.
+- [x] All API responses must be in JSON format.
+- [x] Add pagination on the API for the listing of the posts
+- [x] Provide the unit testing for all routes using Mocha and Chai or your preferred testing framework.
 - [ ] Provide documentation for all routes, we preferer using Swagger API, but you can using README for documentation.
 - [ ] Provide a README file with usage instructions (how to the runs, considerations, etc...).
-- [ ] Use naming written as camelCase by convention.
+- [x] Use naming written as camelCase by convention.
 
 #### - **The folders structures of the project should be following the example below.**
 
