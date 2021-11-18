@@ -1,7 +1,8 @@
 import express, { Express } from 'express';
-import database from './infra/database/mongooseConnection';
 import { routes } from './routes';
 import Swagger from './infra/swagger';
+import database from './infra/database/mongooseConnection';
+import { logger } from './utils/Logger';
 
 class App {
 	server: Express;
@@ -10,9 +11,10 @@ class App {
 	constructor(port: number | string) {
 		this.port = port;
 		this.server = express();
+		logger('Loading server...');
+		this.loadDatabase();
 		this.loadMiddleware();
 		this.loadRoutes();
-		this.loadDatabase();
 	}
 
 	loadMiddleware() {
@@ -20,14 +22,8 @@ class App {
 		this.server.use('/api-docs', Swagger.serve, Swagger.setup);
 	}
 
-	loadRoutes() {
-		for (const route of routes) {
-			this.server.use(route);
-		}
-	}
-
 	loadDatabase() {
-		console.log('Loading database connection...');
+		logger('Loading database connection...');
 		database
 			.start()
 			.then(() => {
@@ -38,8 +34,13 @@ class App {
 			});
 	}
 
+	loadRoutes() {
+		for (const route of routes) {
+			this.server.use(route);
+		}
+	}
 	start() {
-		this.server.listen(this.port, () => console.log(`Running on port ${this.port}`));
+		this.server.listen(this.port, () => logger(`Running on port ${this.port}`));
 	}
 }
 

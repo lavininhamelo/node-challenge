@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { logger } from '../../utils/Logger';
 
 class MongooseConnection {
 	mongoUri: string;
@@ -10,7 +11,7 @@ class MongooseConnection {
 	async start() {
 		try {
 			await mongoose.connect(this.mongoUri);
-			console.log('Database was connected!');
+			logger('Database was connected!');
 		} catch (error) {
 			console.log(error);
 		}
