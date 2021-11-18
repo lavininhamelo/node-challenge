@@ -89,6 +89,17 @@ describe('[TEST] POSTS HTTP', () => {
 			expect(data.title).to.equal(newPost.title);
 			expect(data.body).to.equal(newPost.body);
 		});
+
+		it('should return 404 if post is not found', async () => {
+			const id = 'noneId';
+
+			const res = await request(app)
+				.get('/posts/' + id)
+				.set('Authorization', `Bearer ${token}`)
+				.send();
+
+			expect(res.status).to.equal(404);
+		});
 	});
 
 	describe('PUT /posts/:id', () => {
@@ -116,6 +127,39 @@ describe('[TEST] POSTS HTTP', () => {
 			expect(data.title).to.equal(newPostData.title);
 			expect(data.body).to.equal(newPostData.body);
 		});
+
+		it('should return 404 if post is not found', async () => {
+			const id = 'noneId';
+			const newPostData = {
+				title: 'Any title 2',
+				body: 'Any content 2',
+			};
+
+			const res = await request(app)
+				.put('/posts/' + id)
+				.set('Authorization', `Bearer ${token}`)
+				.send(newPostData);
+
+			expect(res.status).to.equal(404);
+		});
+
+		it('should return 403 if user is not the author', async () => {
+			const post = {
+				title: 'Any title 1',
+				body: 'Any content 1',
+				author_id: 'Any author id',
+				tags: ['Any', 'Tag'],
+			};
+
+			const newPost = await Post.create(post);
+			const id = newPost._id;
+			const res = await request(app)
+				.put('/posts/' + id)
+				.set('Authorization', `Bearer ${token}`)
+				.send();
+
+			expect(res.status).to.equal(403);
+		});
 	});
 
 	describe('DELETE /posts/:id', () => {
@@ -135,6 +179,35 @@ describe('[TEST] POSTS HTTP', () => {
 				.send();
 
 			expect(res.status).to.equal(204);
+		});
+
+		it('should return 404 if post is not found', async () => {
+			const id = 'noneId';
+
+			const res = await request(app)
+				.delete('/posts/' + id)
+				.set('Authorization', `Bearer ${token}`)
+
+				.send();
+
+			expect(res.status).to.equal(404);
+		});
+
+		it('should return 401 if user is not the author', async () => {
+			const post = {
+				title: 'Any title 1',
+				body: 'Any content 1',
+				author_id: 'Any author id',
+				tags: ['Any', 'Tag'],
+			};
+
+			const newPost = await Post.create(post);
+			const id = newPost._id;
+			const res = await request(app)
+				.delete('/posts/' + id)
+				.send();
+
+			expect(res.status).to.equal(401);
 		});
 	});
 
