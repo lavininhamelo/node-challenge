@@ -12,22 +12,22 @@ The project is a simple challenge to test your skills in building APIs using the
 
 **This API should allow to:**
 
-| Method | Name | Route |
-| ------ | ------ | ------ |
-| POST | Create Post | /api/posts |
-| GET | Listing Posts | /api/posts |
-| GET | Get Post By ID | /api/posts/:id |
-| PUT | Edit Post | /api/posts/:id |
-| DELETE | Delete Post | /api/posts/:id |
+| Method | Name           | Route          |
+| ------ | -------------- | -------------- |
+| POST   | Create Post    | /api/posts     |
+| GET    | Listing Posts  | /api/posts     |
+| GET    | Get Post By ID | /api/posts/:id |
+| PUT    | Edit Post      | /api/posts/:id |
+| DELETE | Delete Post    | /api/posts/:id |
 
 **The post must have the following fields:**
 
-| Field | Type |
-| ------ | ------ |
-| id | UUID |
-| title | string |
-| body | string |
-| tags | string[] |
+| Field | Type     |
+| ----- | -------- |
+| id    | UUID     |
+| title | string   |
+| body  | string   |
+| tags  | string[] |
 
 ### Requirements
 
@@ -69,8 +69,8 @@ The project is a simple challenge to test your skills in building APIs using the
 
 ### Data Persistence
 
-- [ ] You will need to persist the data in some way, maybe in memory.
-- [ ] You don't need to use any external data persistence (database, cache, etc.), and the easier it is for us to run it, is better.
+- [x] You will need to persist the data in some way, maybe in memory.
+- [x] You don't need to use any external data persistence (database, cache, etc.), and the easier it is for us to run it, is better.
 
 ### Evaluation
 
@@ -86,5 +86,5 @@ The project is a simple challenge to test your skills in building APIs using the
 
 - [ ] Authenticated the routes using JWT
 - [ ] Process and validate the data that the API receives before creating the post.
-- [ ] Using MongoDB for storage data
+- [x] Using MongoDB for storage data
 - [ ] Using Swagger API documentation

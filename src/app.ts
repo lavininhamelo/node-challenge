@@ -1,5 +1,6 @@
 import express, { Express } from 'express';
 import database from './infra/database/mongooseConnection';
+import { routes } from './routes';
 
 class App {
 	server: Express;
@@ -9,11 +10,18 @@ class App {
 		this.port = port;
 		this.server = express();
 		this.loadMiddleware();
+		this.loadRoutes();
 		this.loadDatabase();
 	}
 
 	loadMiddleware() {
 		this.server.use(express.json());
+	}
+
+	loadRoutes() {
+		for (const route of routes) {
+			this.server.use(route);
+		}
 	}
 
 	loadDatabase() {
