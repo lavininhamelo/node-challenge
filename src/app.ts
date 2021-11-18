@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+import database from './infra/database/mongooseConnection';
 
 class App {
 	server: Express;
@@ -8,11 +9,23 @@ class App {
 		this.port = port;
 		this.server = express();
 		this.loadMiddleware();
-		this.start();
+		this.loadDatabase();
 	}
 
 	loadMiddleware() {
 		this.server.use(express.json());
+	}
+
+	loadDatabase() {
+		console.log('Loading database connection...');
+		database
+			.start()
+			.then(() => {
+				this.start();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}
 
 	start() {
